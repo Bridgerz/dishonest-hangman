@@ -1,0 +1,11 @@
+C:\Users\bridg\Desktop\Git\dishonest-hangman\bin\Debug\netcoreapp2.1\dishonest-hangman.deps.json
+C:\Users\bridg\Desktop\Git\dishonest-hangman\bin\Debug\netcoreapp2.1\dishonest-hangman.runtimeconfig.json
+C:\Users\bridg\Desktop\Git\dishonest-hangman\bin\Debug\netcoreapp2.1\dishonest-hangman.runtimeconfig.dev.json
+C:\Users\bridg\Desktop\Git\dishonest-hangman\bin\Debug\netcoreapp2.1\dishonest-hangman.dll
+C:\Users\bridg\Desktop\Git\dishonest-hangman\bin\Debug\netcoreapp2.1\dishonest-hangman.pdb
+C:\Users\bridg\Desktop\Git\dishonest-hangman\obj\Debug\netcoreapp2.1\dishonest-hangman.csprojAssemblyReference.cache
+C:\Users\bridg\Desktop\Git\dishonest-hangman\obj\Debug\netcoreapp2.1\dishonest-hangman.csproj.CoreCompileInputs.cache
+C:\Users\bridg\Desktop\Git\dishonest-hangman\obj\Debug\netcoreapp2.1\dishonest-hangman.AssemblyInfoInputs.cache
+C:\Users\bridg\Desktop\Git\dishonest-hangman\obj\Debug\netcoreapp2.1\dishonest-hangman.AssemblyInfo.cs
+C:\Users\bridg\Desktop\Git\dishonest-hangman\obj\Debug\netcoreapp2.1\dishonest-hangman.dll
+C:\Users\bridg\Desktop\Git\dishonest-hangman\obj\Debug\netcoreapp2.1\dishonest-hangman.pdb

@@ -7,19 +7,21 @@ namespace dishonest_hangman
 {
     public class Game
     {
+        private const int MAXGUESSES = 6;
+
         private List<String> Words;
         private String Word;
         private List<String> SimWords;
         private char[] CorrectGuesses;
         private List<char> IncorrectGuesses;
-        private int GameState;
+        private int State;
 
         public Game()
         {
             this.Words = new List<String>();
             this.SimWords = new List<String>();
             this.IncorrectGuesses = new List<char>();
-            this.GameState = Const.NEXTGUESS;
+            this.State = GameState.NEXTGUESS;
 
             // Initialize Words List with all words with valid letters
             var arr = System.IO.File.ReadAllLines("./words");
@@ -36,8 +38,6 @@ namespace dishonest_hangman
             var rand = new Random();
             this.Word = Words[rand.Next(this.Words.Count)];
 
-            this.Word = "xylophonist";
-
             this.CorrectGuesses = new char[this.Word.Length];
             for (int i = 0; i < this.CorrectGuesses.Length; i++)
                 this.CorrectGuesses[i] = '_';
@@ -47,12 +47,12 @@ namespace dishonest_hangman
             while (!this.TakeTurn()) { }
 
             // End Game
-            if (this.IncorrectGuesses.Count >= Const.MAXGUESSES)
+            if (this.IncorrectGuesses.Count >= MAXGUESSES)
             {
-                this.GameState = Const.LOSE;
+                this.State = GameState.LOSE;
                 return;
             }
-            this.GameState = Const.WIN;
+            this.State = GameState.WIN;
             this.PrintStatus();
         }
 
@@ -63,15 +63,15 @@ namespace dishonest_hangman
             var guess = this.GetGuess();
             if (this.CorrectGuesses.Contains(guess) || this.IncorrectGuesses.Contains(guess))
             {
-                this.GameState = Const.ALREADYGUESSED;
+                this.State = GameState.ALREADYGUESSED;
                 return false;
             }
-            this.GameState = Const.NEXTGUESS;
+            this.State = GameState.NEXTGUESS;
 
             this.TryCheat(guess);
 
             // end if all characters have been guessed or max guesses has been reached
-            return this.CorrectGuesses.Count(letter => letter != '_') == this.Word.ToList().Count || this.IncorrectGuesses.Count >= Const.MAXGUESSES;
+            return this.CorrectGuesses.Count(letter => letter != '_') == this.Word.ToList().Count || this.IncorrectGuesses.Count >= MAXGUESSES;
         }
 
         private bool TryCheat(char guess)
@@ -171,16 +171,14 @@ namespace dishonest_hangman
 
         private void PrintStatus()
         {
-            //Console.Clear();
-            Console.WriteLine("The first word to guess is: " + this.Word);
-            Console.WriteLine("Number of similar words: " + this.SimWords.Count());
+            Console.Clear();
             Console.Write("Guessed Letters: ");
 
             foreach (var letter in this.IncorrectGuesses)
                 Console.Write(" " + letter);
 
             Console.WriteLine();
-            Console.WriteLine("Remaining Incorrect Guesses: " + (Const.MAXGUESSES - this.IncorrectGuesses.Count));
+            Console.WriteLine("Remaining Incorrect Guesses: " + (MAXGUESSES - this.IncorrectGuesses.Count));
 
             foreach (var letter in this.CorrectGuesses)
                 Console.Write(letter + " ");
@@ -188,18 +186,18 @@ namespace dishonest_hangman
 
             Console.WriteLine();
             Console.WriteLine();
-            switch (this.GameState)
+            switch (this.State)
             {
-                case Const.NEXTGUESS:
+                case GameState.NEXTGUESS:
                     Console.WriteLine("Please provide your next guess...");
                     break;
-                case Const.ALREADYGUESSED:
+                case GameState.ALREADYGUESSED:
                     Console.WriteLine("You have already guessed this letter...");
                     break;
-                case Const.LOSE:
+                case GameState.LOSE:
                     Console.WriteLine("Better luck next time!");
                     break;
-                case Const.WIN:
+                case GameState.WIN:
                     Console.WriteLine("You Win!");
                     break;
             }
