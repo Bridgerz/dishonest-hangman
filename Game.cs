@@ -48,10 +48,7 @@ namespace dishonest_hangman
 
             // End Game
             if (this.IncorrectGuesses.Count >= MAXGUESSES)
-            {
                 this.State = GameState.LOSE;
-                return;
-            }
             this.State = GameState.WIN;
             this.PrintStatus();
         }
