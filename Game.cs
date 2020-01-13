@@ -7,7 +7,7 @@ namespace dishonest_hangman
 {
     public class Game
     {
-        private const int MAXGUESSES = 6;
+        private const int MAXGUESSES = 60;
 
         private List<String> Words;
         private String Word;
@@ -47,9 +47,10 @@ namespace dishonest_hangman
             while (!this.TakeTurn()) { }
 
             // End Game
-            if (this.IncorrectGuesses.Count >= MAXGUESSES)
+            if (this.IncorrectGuesses.Count >= MAXGUESSES) 
                 this.State = GameState.LOSE;
-            this.State = GameState.WIN;
+            else 
+                this.State = GameState.WIN;
             this.PrintStatus();
         }
 
@@ -155,8 +156,10 @@ namespace dishonest_hangman
 
         private bool Cornered(char guess)
         {
-            if (!this.Word.Contains(guess))
+            if (!this.Word.Contains(guess)) {
+                this.IncorrectGuesses.Add(guess);
                 return true;
+            }
 
             for (int i = 0; i < this.Word.Length; i++)
             {
